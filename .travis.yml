@@ -14,4 +14,11 @@ after_success:
   - docker build -t jaromirrivera/multi-server ./server
   - docker build -t jaromirrivera/multi-worker ./worker
 
-
+# Log in to the Docker CLI
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u $"DOCKER_ID" --password-stdin
+# Take those images and push them to Docker Hub
+  - docker push jaromirrivera/multi-client
+  - docker push jaromirrivera/multi-nginx 
+  - docker push jaromirrivera/multi-server
+  - docker push jaromirrivera/multi-worker
