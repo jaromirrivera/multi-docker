@@ -14,11 +14,9 @@ after_success:
   - docker build -t jaromirrivera/multi-server ./server
   - docker build -t jaromirrivera/multi-worker ./worker
 
-script:
-  - docker images
-
 # Log in to the Docker CLI
 script:
+  - docker images
   - echo $DOCKER_ID
   - echo $DOCKER_PASSWORD
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
