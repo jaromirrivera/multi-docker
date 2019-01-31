@@ -6,7 +6,9 @@ before_install:
   - docker build -t jaromirrivera/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run jaromirrivera/react-test npm run test -- --coverage
+  - docker run jaromirrivera/react-test npm test -- --coverage
+
+after_success:
   - docker build -t jaromirrivera/multi-client ./client
   - docker build -t jaromirrivera/multi-nginx ./nginx
   - docker build -t jaromirrivera/multi-server ./server
